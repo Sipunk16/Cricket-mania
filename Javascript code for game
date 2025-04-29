@@ -1,0 +1,27 @@
+game code
+// Cricket Blitz Casino Game (Simplified)
+function cricketBlitzCasino(betType, betValue, betAmount) {
+    const ballOutcomes = [0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 4, 6, 'W']; // Weighted outcomes
+    let overResult = [];
+    let totalRuns = 0;
+    let wickets = 0;
+
+    // Simulate 6 balls
+    for (let i = 0; i < 6; i++) {
+        const outcome = ballOutcomes[Math.floor(Math.random() * ballOutcomes.length)];
+        overResult.push(outcome);
+        if (typeof outcome === 'number') {
+            totalRuns += outcome;
+        } else if (outcome === 'W') {
+            wickets++;
+        }
+    }
+
+    // Show results
+    console.log(`Over Outcome: ${overResult.join(' - ')}`);
+    console.log(`Total Runs: ${totalRuns}, Wickets: ${wickets}`);
+
+    // Evaluate bet
+    let payout = 0;
+    if (betType === 'over_under') {
+        const line = 20.5; // Static line
